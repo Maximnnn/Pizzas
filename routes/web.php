@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 //pages
 Route::get('/', 'PizzaController@pizzaList');
+Route::get('/pizza/create', 'PizzaController@createPage');
 Route::get('/pizza/{pizza}', 'PizzaController@pizza');
 Route::get('/ingredient/create', 'IngredientController@index');
-Route::get('/pizza/create', 'PizzaController@createPage');
 
 //json apis
 Route::get('/ingredients/list', 'IngredientController@getList');

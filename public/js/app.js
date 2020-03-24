@@ -2122,7 +2122,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.get('/ingredients/list').then(function (res) {
-        _this.ingredients = res.data.data; //this.ingredients.map(i => i.selected = false);
+        _this.ingredients = res.data;
       });
     },
     create: function create() {
@@ -2135,7 +2135,7 @@ __webpack_require__.r(__webpack_exports__);
         })
       }).then(function (res) {
         alert('pizza created');
-        location.reload();
+        location.href = '/';
       });
     }
   }

@@ -40,8 +40,7 @@
         methods: {
             fetchIngredients : function () {
                 axios.get('/ingredients/list').then((res) => {
-                    this.ingredients = res.data.data;
-                    //this.ingredients.map(i => i.selected = false);
+                    this.ingredients = res.data;
                 });
             },
             create: function() {
@@ -50,7 +49,7 @@
                     ingredients: this.ingredients.filter(i => i.selected).map(i => i.id)
                 }).then(res => {
                     alert('pizza created');
-                    location.reload();
+                    location.href= '/';
                 })
             }
         }
