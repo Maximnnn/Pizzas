@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', 'PizzaController@pizzaList');
+Route::get('/pizza/{pizza}', 'PizzaController@pizza');
+
 Route::get('/ingredient/create', 'IngredientController@index');
 Route::get('/ingredients/list', 'IngredientController@getList');
 Route::post('/ingredient/create', 'IngredientController@create');
 
 
-Route::get('/pizza/create', 'PizzaController@index');
+Route::get('/pizza/create', 'PizzaController@createPage');
 Route::post('/pizza/create', 'PizzaController@create');
+Route::post('/pizza/update/{pizza}', 'PizzaController@update');

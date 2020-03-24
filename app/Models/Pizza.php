@@ -14,7 +14,8 @@ class Pizza extends Model
 
     public function ingredients()
     {
-        return $this->hasManyThrough(Ingredient::class, PizzaIngredient::class);
+        return $this->hasManyThrough(Ingredient::class, PizzaIngredient::class,
+            'pizza_id', 'id', 'id', 'ingredient_id');
     }
 
     public function pizzaIngredients()

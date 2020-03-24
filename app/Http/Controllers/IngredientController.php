@@ -22,6 +22,6 @@ class IngredientController extends Controller
 
     public function getList()
     {
-        return Ingredient::query()->paginate(20);
+        return Ingredient::query()->get();
     }
 }

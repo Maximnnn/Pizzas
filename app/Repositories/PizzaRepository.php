@@ -24,6 +24,25 @@ class PizzaRepository extends Repository
         $this->pizzaPriceCalc = $pizzaPriceCalc;
     }
 
+    public function updateIngredients(Pizza $pizza, array $ingredientIds): Pizza
+    {
+        $toAdd = $this->preparePizzaIngredients(
+            array_diff($ingredientIds, array_column($pizza->pizzaIngredients()->get()->toArray(), 'ingredient_id'))
+        );
+        $price = $this->preparePrice($ingredientIds);
+
+        return DB::transaction(function() use ($pizza, $ingredientIds, $price, $toAdd) {
+
+            $pizza->pizzaIngredients()->saveMany($toAdd);
+            $pizza->pizzaIngredients()->whereNotIn('ingredient_id', $ingredientIds)->delete();
+
+            $pizza->price = $price;
+            $pizza->save();
+
+            return $pizza;
+        });
+    }
+
     public function createWithIngredients(string $name, array $ingredientIds): Pizza
     {
         $pizzaIngredients = $this->preparePizzaIngredients($ingredientIds);

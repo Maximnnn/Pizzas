@@ -18,7 +18,7 @@ class PizzaPriceCalculator implements PizzaPriceCalcInterface
     public function calcPrice(): string
     {
         $net = array_reduce($this->ingredients, function($price, Ingredient $ingredient) {
-            $price = bcadd($price, $ingredient->price,2);
+            $price = bcadd($price, (string)$ingredient->price,2);
             return $price;
         }, '0');
 
